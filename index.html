@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>加入聯絡人</title>
+</head>
+<body>
+  <p><a id="add" href="Sample2.vcf">加入聯絡人</a></p>
+  <script>
+    fetch("Sample2.vcf")
+      .then(function (r) { return r.text(); })
+      .then(function (text) {
+        var blob = new Blob([text], { type: "text/vcard" });
+        var url = URL.createObjectURL(blob);
+        var a = document.getElementById("add");
+        a.href = url;
+        a.download = "Sample2.vcf";
+        a.click();
+      });
+  </script>
+</body>
+</html>
